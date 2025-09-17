@@ -1,6 +1,6 @@
 "use client";
 
-import LoginForm from '@/components/Form/loginForm';
+import LoginForm from '@/components/form/loginForm';
 import { AuthContext } from '@/contexts/AuthContext';
 import { sendRequest } from '@/utils/api';
 import { notification } from 'antd';
@@ -26,6 +26,8 @@ const SignInPage = () => {
             })
 
             if (res.StatusCode == 200 && res.Data?.accessToken) {
+                console.log(res.Data.accessToken);
+                
                 login?.(res.Data?.accessToken);
                 router.push('/');
             }

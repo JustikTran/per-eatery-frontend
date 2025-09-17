@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import "./globals.css";
 import StyledComponentsRegistry from "@/library/AntdRegistry";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,14 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <StyledComponentsRegistry>
-          {children}
-        </StyledComponentsRegistry>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <StyledComponentsRegistry>
+            {children}
+          </StyledComponentsRegistry>
+        </body>
+      </html>
+    </AuthProvider>
+
   );
 }

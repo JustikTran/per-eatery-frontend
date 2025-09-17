@@ -1,6 +1,6 @@
 "use client";
 
-import SignUpForm from '@/components/Form/signUpForm'
+import SignUpForm from '@/components/form/signUpForm'
 import { sendRequest } from '@/utils/api';
 import { notification } from 'antd';
 import { useRouter } from 'next/navigation';

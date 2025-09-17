@@ -29,36 +29,41 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         localStorage.removeItem("accessToken");
     };
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            if (!accessToken) {
-                setUser(null);
-                return;
-            }
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         if (!accessToken) {
+    //             setUser(null);
+    //             return;
+    //         }
 
-            try {
-                const res = await sendRequest<IBackendRes<IUser>>({
-                    url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/odata/user/get-user`,
-                    method: "POST",
-                    body: {
-                        token: accessToken,
-                    },
-                    headers: { Authorization: `Bearer ${accessToken}` },
-                });
-                setUser(res.Data!);
-            } catch (error) {
-                console.error("Error in get user:", error);
-                logout();
-            }
-        };
+    //         try {
+    //             const res = await sendRequest<IBackendRes<IUser>>({
+    //                 url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/odata/user/get-user`,
+    //                 method: "POST",
+    //                 body: {
+    //                     token: accessToken,
+    //                 },
+    //                 headers: { Authorization: `Bearer ${accessToken}` },
+    //             });
+    //             setUser(res.Data!);
+    //         } catch (error) {
+    //             console.error("Error in get user:", error);
+    //             logout();
+    //         }
+    //     };
 
-        fetchUser();
-    }, [accessToken]);
+    //     fetchUser();
+    // }, [accessToken]);
+
 
     useEffect(() => {
         const storedToken = localStorage.getItem("accessToken");
         if (storedToken) {
             setAccessToken(storedToken);
+        } else {
+            const cookieToken = Cookies.get('token');
+            if (cookieToken)
+                setAccessToken(cookieToken);
         }
     }, []);
 
