@@ -10,13 +10,22 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
         <Layout className="!min-h-screen ">
             <Header
                 className="border-b shadow-lg"
-                style={{ backgroundColor: 'transparent', paddingLeft: 40, paddingRight: 40 }}>
+                style={{
+                    backgroundColor: 'white',
+                    paddingLeft: 40,
+                    paddingRight: 40,
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 1,
+                }}>
                 <CpnHeader />
             </Header>
             <Content style={{ backgroundColor: 'transparent', paddingLeft: 40, paddingRight: 40 }}>
                 <main>{children}</main>
             </Content>
-            <Footer style={{ backgroundColor: 'transparent' }}></Footer>
+            <Footer style={{ backgroundColor: 'transparent' }}>
+                <p className="text-center text-xs">&copy; 2025 Justik Tran. All rights reserved. </p>
+            </Footer>
         </Layout>
     );
 };

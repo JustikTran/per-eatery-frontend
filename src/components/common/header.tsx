@@ -3,10 +3,10 @@
 import { AuthContext } from '@/contexts/AuthContext';
 import Link from 'next/link'
 import React, { useContext } from 'react'
-import { ShoppingCartOutlined } from '@ant-design/icons';
-import { Badge, Input } from 'antd';
+import { Input } from 'antd';
 import { usePathname } from 'next/navigation';
 import UserDrawer from '@/components/common/userDrawer';
+import HeaderCart from '@/components/common/headerCart';
 
 const CpnHeader = () => {
     const { accessToken } = useContext(AuthContext) ?? {};
@@ -42,12 +42,7 @@ const CpnHeader = () => {
             {
                 accessToken ? <>
                     <div className='flex items-center space-x-6'>
-                        <Link className='text-gray-900 hover:text-gray-500' href={'/cart'}>
-                            <Badge count={1} size='small'>
-                                <ShoppingCartOutlined className='text-2xl' />
-                            </Badge>
-                        </Link>
-
+                        <HeaderCart />
                         <UserDrawer />
                     </div>
                 </>
