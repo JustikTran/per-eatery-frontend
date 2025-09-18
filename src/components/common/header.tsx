@@ -23,7 +23,10 @@ const CpnHeader = () => {
             <Link className='text-3xl font-black text-black hover:text-black' href={'/'}>Eatery</Link>
             <ul className="flex justify-center space-x-6">
                 {links.map((link) => {
-                    const isActive = pathname === link.href;
+                    const isActive =
+                        link.href === "/"
+                            ? pathname === "/" // Home chỉ active khi đúng "/"
+                            : pathname.startsWith(link.href);
 
                     return (
                         <li key={link.href}>
