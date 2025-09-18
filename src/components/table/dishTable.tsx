@@ -55,7 +55,7 @@ const DishTable = ({
             render: (price: number) => price.toLocaleString(),
         },
         {
-            title: '',
+            title: 'Tình trạng kho',
             dataIndex: 'InStock',
             key: 'inStock',
             render: (_: unknown, record: IDish) => (
@@ -175,7 +175,7 @@ const DishTable = ({
             columns={columns}
             dataSource={dishes}
             pagination={{
-                current: skip / 5 + 1,
+                current: skip / 4 + 1,
                 total: total,
                 pageSize: 4,
                 defaultCurrent: 1,

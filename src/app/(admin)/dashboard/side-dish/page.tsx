@@ -1,6 +1,6 @@
 "use client";
 
-import ModalAddDish from '@/components/modal/modal.add.dish';
+import ModalAddSideDish from '@/components/modal/modal.add.side-dish';
 import DishTable from '@/components/table/dishTable'
 import { AuthContext } from '@/contexts/AuthContext';
 import { sendRequest } from '@/utils/api';
@@ -8,7 +8,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { message, Modal } from 'antd';
 import React, { useContext, useEffect, useState } from 'react'
 
-const ManageDishPage = () => {
+const ManageSideDishPage = () => {
     const { accessToken } = useContext(AuthContext) ?? {};
     const [loading, setLoading] = useState<boolean>(false);
     const [dishes, setDishes] = useState<IDish[]>([]);
@@ -25,7 +25,7 @@ const ManageDishPage = () => {
                 method: "GET",
                 headers: { Authorization: `Bearer ${accessToken}` },
                 queryParams: {
-                    $filter: "Type eq 'major'",
+                    $filter: "Type eq 'minor'",
                     $top: 4,
                     $count: true
                 }
@@ -50,7 +50,7 @@ const ManageDishPage = () => {
                 Authorization: `Bearer ${accessToken}`,
             },
             queryParams: {
-                $filter: "Type eq 'major'",
+                $filter: "Type eq 'minor'",
                 $top: top,
                 $skip: skip,
                 $count: true,
@@ -68,10 +68,9 @@ const ManageDishPage = () => {
     useEffect(() => {
         getDishes();
     }, [accessToken]);
-
     return (
         <div>
-            <p className='text-lg font-bold'>Danh sách món chính</p>
+            <p className='text-lg font-bold'>Danh sách món phụ</p>
             <button
                 onClick={() => setShowModal(true)}
                 className='my-3 border p-1.5 rounded-md border-gray-800 hover:bg-gray-800 hover:text-white hover:shadow-md duration-200 ease-in-out'
@@ -92,21 +91,12 @@ const ManageDishPage = () => {
                 onCancel={() => setShowModal(false)}
                 destroyOnClose={true}
                 visible={showModal}>
-                <ModalAddDish
+                <ModalAddSideDish
                     onClose={() => setShowModal(false)}
                     onReload={() => getDishes()} />
             </Modal>
-            <Modal
-                key={current?.Id}
-                title={"Cập nhật món ăn"}
-                footer={null}
-                centered
-                onCancel={() => setShowUpdateModal(false)}
-                destroyOnClose={true}
-                visible={showUpdateModal}>
-            </Modal>
-        </div >
+        </div>
     )
 }
 
-export default ManageDishPage
+export default ManageSideDishPage

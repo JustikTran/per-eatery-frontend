@@ -8,7 +8,6 @@ import { Button, Form, Input, InputNumber, message, Upload } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { UploadChangeParam, UploadFile } from 'antd/es/upload';
 import React, { useContext, useState } from 'react'
-
 interface IData {
     onReload: () => void,
     onClose: () => void
@@ -21,7 +20,7 @@ interface ICreateResponse {
     imageUrl: string;
 }
 
-const ModalAddDish = ({
+const ModalAddSideDish = ({
     onReload,
     onClose
 }: IData) => {
@@ -88,7 +87,7 @@ const ModalAddDish = ({
                 Name: formData?.Name,
                 Description: formData?.Description,
                 Price: formData?.Price,
-                Type: "major",
+                Type: "minor",
                 Image: thumbnailUri,
                 InStock: true
             }
@@ -160,7 +159,7 @@ const ModalAddDish = ({
                 </Form.Item>
                 <Form.Item label="Giá (VNĐ)" name={"Price"} rules={[
                     { required: true, message: 'Vui lòng nhập giá sản phẩm' },
-                    { type: 'number', min: 10000, max: 1000000, message: 'Giá phải từ 10,000 đến 1,000,000.' },
+                    { type: 'number', min: 1000, max: 1000000, message: 'Giá phải từ 1,000 đến 1,000,000.' },
                 ]} >
                     <InputNumber style={{ width: '100%' }} />
                 </Form.Item>
@@ -173,4 +172,4 @@ const ModalAddDish = ({
     )
 }
 
-export default ModalAddDish
+export default ModalAddSideDish

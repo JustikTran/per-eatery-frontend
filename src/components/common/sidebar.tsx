@@ -18,14 +18,14 @@ const menuItems = [
         label: <Link href={'/dashboard/dish'}>Quản lý món ăn</Link>,
     },
     {
-        key: "/dashboard/topping",
+        key: "/dashboard/side-dish",
         icon: <OrderedListOutlined />,
-        label: <Link href={'/dashboard/topping'}>Quản lý món phụ</Link>,
+        label: <Link href={'/dashboard/side-dish'}>Quản lý món phụ</Link>,
     },
     {
         key: "/dashboard/user",
         icon: <UserOutlined />,
-        label: <Link href={'dashboard/topping'}>Quản lý người dùng</Link>,
+        label: <Link href={'dashboard/user'}>Quản lý người dùng</Link>,
     },
     {
         key: "/dashboard/order",
