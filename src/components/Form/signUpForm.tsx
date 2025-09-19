@@ -26,11 +26,12 @@ const SignUpForm = ({ OnSubmit }: IData) => {
         if (!value) return Promise.resolve();
         try {
             const res = await sendRequest<IBackendRes<IUser>>({
-                url: `${process.env.NEXT_PUBLIC_API_BACKEND}/odata/account/${field}=${value}`,
+                url: `${process.env.NEXT_PUBLIC_BACKEND}/odata/user/${field}=${value}`,
                 method: "GET",
             });
-            if (res.StatusCode != 404) {
-                return Promise.reject(`${res.Message}`);
+            
+            if (res.data) {
+                return Promise.reject(`${res.message}`);
             }
             return Promise.resolve();
         } catch {

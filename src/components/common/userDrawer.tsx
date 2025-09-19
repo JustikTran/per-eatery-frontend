@@ -1,8 +1,8 @@
 "use client"
 
 import { AuthContext } from '@/contexts/AuthContext';
-import { DashboardOutlined, LogoutOutlined, ProfileOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Divider, Drawer } from 'antd'
+import { DashboardOutlined, LogoutOutlined, ProfileOutlined, SettingOutlined } from '@ant-design/icons';
+import { Divider, Drawer } from 'antd'
 import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react'
 

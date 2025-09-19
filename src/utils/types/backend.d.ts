@@ -16,6 +16,10 @@ declare global {
     Message?: string;
     StatusCode: number;
     Data?: T;
+    message?: string;
+    statusCode: number;
+    data?: T;
+    error?: string
   }
 
   interface IReqSignIn {

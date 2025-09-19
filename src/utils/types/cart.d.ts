@@ -3,6 +3,7 @@ interface ICart {
     UserId: string,
     Thumbnail: string,
     Items?: ICartItem[],
+    Total?: number,
     CreatedAt: Date,
     UpdatedAt: Date
 }
@@ -10,6 +11,7 @@ interface ICart {
 interface ICartItem {
     Id?: string,
     DishId: string,
+    Dish: IDish,
     Thumbnail: string,
     Quantity: number,
     CardId?: string,

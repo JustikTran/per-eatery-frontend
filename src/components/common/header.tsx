@@ -7,6 +7,7 @@ import { Input } from 'antd';
 import { usePathname } from 'next/navigation';
 import UserDrawer from '@/components/common/userDrawer';
 import HeaderCart from '@/components/common/headerCart';
+import Message from '@/components/button/message';
 
 const CpnHeader = () => {
     const { accessToken } = useContext(AuthContext) ?? {};
@@ -45,6 +46,7 @@ const CpnHeader = () => {
             {
                 accessToken ? <>
                     <div className='flex items-center space-x-6'>
+                        <Message />
                         <HeaderCart />
                         <UserDrawer />
                     </div>

@@ -11,6 +11,7 @@ interface IData {
 }
 
 const UserDishDetail = ({ dish }: IData) => {
+    const { accessToken } = useContext(AuthContext) ?? {};
     const [loading, setLoading] = useState<boolean>(false);
     const { user } = useContext(AuthContext) ?? {};
     const [topping, setTopping] = useState<IDish[]>([]);
@@ -52,17 +53,35 @@ const UserDishDetail = ({ dish }: IData) => {
             const payload = {
                 UserId: user?.Id,
                 Thumbnail: dish.Image,
-                Items: cartItems
+                Items: [...cartItems, {
+                    DishId: dish.Id,
+                    Quantity: 1,
+                    Thumbnail: dish.Image,
+                }]
             }
 
-            console.log(payload);
+            const res = await sendRequest<IBackendRes<object>>({
+                url: `${process.env.NEXT_PUBLIC_BACKEND}/odata/cart/create`,
+                method: "POST",
+                headers: { Authorization: `Bearer ${accessToken}` },
+                body: payload
+            })
 
-            api.open({
-                type: 'success',
-                message: 'Add dish to cart successfully.',
-                showProgress: false,
-                duration: 2
-            });
+            if (res.StatusCode == 201 || res.StatusCode == 201)
+                api.open({
+                    type: 'success',
+                    message: 'Add dish to cart successfully.',
+                    showProgress: false,
+                    duration: 2
+                });
+            else {
+                api.open({
+                    type: 'warning',
+                    message: 'Add dish to cart failure.',
+                    showProgress: false,
+                    duration: 2
+                });
+            }
         } catch (error) {
             console.error(error);
             api.open({

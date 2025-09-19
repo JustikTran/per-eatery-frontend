@@ -30,9 +30,10 @@ export const sendRequest = async <T>(props: IRequest) => {
       return res.json().then(function (json) {
         // to be able to access error status when you catch the error
         return {
-          statusCode: res.status,
-          message: json?.message ?? "",
-          error: json?.error ?? "",
+          statusCode: json?.StatusCode ?? json?.statusCode ?? res.status,
+          message: json?.message ?? json?.Message ?? "",
+          error: json?.error ?? json?.Error ?? "",
+          data: json?.data ?? json?.Data ?? null
         } as T;
       });
     }

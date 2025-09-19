@@ -4,6 +4,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import "./globals.css";
 import StyledComponentsRegistry from "@/library/AntdRegistry";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { CartProvider } from "@/contexts/CartContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,15 +29,17 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <StyledComponentsRegistry>
-            {children}
-          </StyledComponentsRegistry>
-        </body>
-      </html>
+      <CartProvider>
+        <html lang="en">
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            <StyledComponentsRegistry>
+              {children}
+            </StyledComponentsRegistry>
+          </body>
+        </html>
+      </CartProvider>
     </AuthProvider>
 
   );
