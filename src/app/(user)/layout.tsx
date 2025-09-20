@@ -23,7 +23,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
             <Content style={{ backgroundColor: 'transparent', paddingLeft: 40, paddingRight: 40 }}>
                 <main>{children}</main>
             </Content>
-            <Footer style={{ backgroundColor: 'transparent' }}>
+            <Footer style={{ backgroundColor: 'white' }}>
                 <p className="text-center text-xs">&copy; 2025 Justik Tran. All rights reserved. </p>
             </Footer>
         </Layout>
